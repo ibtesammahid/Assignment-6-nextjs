@@ -20,7 +20,7 @@ const Navbar = () => {
 
     <div className="flex items-center ">
             <Image src={Logo} alt="Logo"  />
-    <a className="btn btn-ghost text-xl">Fit Log</a>
+    <a className="btn btn-ghost text-xl">FITLOG</a>
     </div>
 
   </div>

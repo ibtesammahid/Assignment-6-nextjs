@@ -11,7 +11,7 @@ interface WorkoutCardProps {
 
 const WorkoutCard = ({exercise } : WorkoutCardProps) => {
     return (
-        <div className="w-full max-w-[370px] overflow-hidden rounded-2xl border border-gray-800 bg-[#15161b] text-white shadow-lg">
+        <div className="w-full  overflow-hidden rounded-2xl border border-gray-800 bg-[#15161b] text-white shadow-lg">
       
       {/* Image */}
       <div className="relative h-[180px] w-full">

@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fit Log",
+  title: "FITLOG",
   description: "A simple fitness log app built with Next.js 16 and Tailwind CSS.",
 };
 
@@ -26,11 +26,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-theme="dark"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col container mx-auto">
         <Navbar />
         <main>
           {children}
         </main>
+        <div className="divider"></div>
         <Footer />
       </body>
     </html>

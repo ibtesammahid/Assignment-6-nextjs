@@ -1,9 +1,16 @@
 import React from 'react';
+import { CiDumbbell } from 'react-icons/ci';
 
 const Footer = () => {
     return (
-        <div>
-            <h2>Footer</h2>
+        <div className='pb-12 pt-5 flex justify-between'>
+            <div className='font-bold flex justify-items-start gap-2'>
+                <CiDumbbell className='text-[#C2F800] h-6 w-6' />
+                <h2>FITLOG</h2>
+            </div>
+            <div>
+                <p className='text-gray-600 text-[0.875rem]'>© 2026 FitLog — Workout Library. Train hard, log honest.</p>
+            </div>
         </div>
     );
 };

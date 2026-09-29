@@ -12,7 +12,7 @@ const LibraryCard = async() => {
     const getExercise = await getCards();
     console.log(getExercise , "Librarycard Component ");
     return (
-        <div className='container mx-auto'>
+        <div className=' grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 py-10'>
             {getExercise.map((exercise: Exercise) => {
                 return (
                     <WorkoutCard key={exercise.id} exercise={exercise} />
