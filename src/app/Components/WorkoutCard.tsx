@@ -1,5 +1,6 @@
 import { Exercise } from '@/Types/excercise';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { CiStar } from 'react-icons/ci';
 import { FaRegClock } from 'react-icons/fa';
@@ -11,7 +12,8 @@ interface WorkoutCardProps {
 
 const WorkoutCard = ({exercise } : WorkoutCardProps) => {
     return (
-        <div className="w-full  overflow-hidden rounded-2xl border border-gray-800 bg-[#15161b] text-white shadow-lg">
+        <Link href={`/workout/${exercise.id}`} className='hover:scale-101 transition-all hover:border-[0.1px] border-lime-400 rounded-2xl'>
+                    <div className="w-full   overflow-hidden rounded-2xl border border-gray-800 bg-[#15161b] text-white shadow-lg">
       
       {/* Image */}
       <div className="relative h-[180px] w-full">
@@ -79,6 +81,7 @@ const WorkoutCard = ({exercise } : WorkoutCardProps) => {
         </div>
       </div>
     </div>
+        </Link>
     );
 };
 
