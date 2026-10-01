@@ -1,9 +1,13 @@
+"use client";
 import Image from 'next/image';
 import React from 'react';
 import Logo from '@/assets/logo.png';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
+
+  const pathname = usePathname();
     return (
    <div className="navbar bg-black shadow-sm  ">
   <div className="navbar-start">
@@ -27,15 +31,16 @@ const Navbar = () => {
 
   </div>
   <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1">
-     <li><Link href="/">Workout</Link></li>
-        <li><Link href="/MyPlan">My Plan</Link></li>
+    <ul className="flex gap-4 menu menu-horizontal ">
+     <li><Link href="/" className={pathname === '/' ? 'text-lime-400 border-lime-400 bg-[#1A2312] rounded-2xl' : 'text-gray-500'}>Workout</Link></li>
+        <li><Link href="/MyPlan" className={pathname === '/MyPlan' ? 'text-lime-400 border-lime-400 bg-[#1A2312] rounded-2xl' : 'text-gray-500'}>My Plan</Link></li>
       
     </ul>
   </div>
   <div className="navbar-end flex gap-2">
     <Link href="/MyPlan"><button className="btn">Plan</button></Link>
-    <button className="btn">Saved</button>
+    <Link href="/MyPlan"><button className="btn">Saved</button></Link>
+    
   </div>
 </div>
     );

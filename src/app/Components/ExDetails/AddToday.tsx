@@ -5,31 +5,26 @@ import React, { useContext } from 'react';
 import { toast } from 'react-toastify';
 
 const AddToday = ({ exercise }: { exercise: Exercise }) => {
+  const { exerciseData, setExerciseData } =
+    useContext(ExerciseContext);
 
-    const { exerciseData, setExerciseData } = useContext(
-      ExerciseContext as unknown as React.Context<{
-        exerciseData: Exercise[];
-        setExerciseData: React.Dispatch<React.SetStateAction<Exercise[]>>;
-      }>
-    );
-    console.log(exerciseData, "ExerciseData from AddToday component");
-
-const handleAddToToday = () => {
-  setExerciseData((prev) => {
-    const alreadyExists = prev.some(
+  const handleAddToToday = () => {
+    const alreadyExists = exerciseData.some(
       (item) => item.id === exercise.id
     );
 
     if (alreadyExists) {
-      toast.info(`${exercise.name} is already in today's plan!`);
-      return prev;
+      toast.error(`${exercise.name} is already in today's plan!`);
+      return;
     }
 
-    toast.success(`${exercise.name} has been added to today's plan!`);
+    setExerciseData((prev) => [...prev, exercise]);
 
-    return [...prev, exercise];
-  });
-};
+    toast.success(
+      `${exercise.name} has been added to today's plan!`
+    );
+  };
+
     return (
         <div>
                    <button

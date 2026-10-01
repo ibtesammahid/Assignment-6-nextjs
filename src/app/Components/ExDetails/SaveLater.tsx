@@ -9,22 +9,20 @@ const SaveLater = ({ exercise }: { exercise: Exercise }) => {
   const { savedExercises, setSavedExercises } =
     useContext(ExerciseContext);
 
-const handleSaveForLater = () => {
-  setSavedExercises((prev) => {
-    const alreadySaved = prev.some(
+  const handleSaveForLater = () => {
+    const alreadySaved = savedExercises.some(
       (item) => item.id === exercise.id
     );
 
     if (alreadySaved) {
-      toast.info(`${exercise.name} is already saved!`);
-      return prev;
+      toast.error(`${exercise.name} is already saved!`);
+      return;
     }
 
-    toast.success(`${exercise.name} has been saved for later!`);
+    setSavedExercises((prev) => [...prev, exercise]);
 
-    return [...prev, exercise];
-  });
-};
+    toast.success(`${exercise.name} has been saved for later!`);
+  };
 
   return (
     <button
