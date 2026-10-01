@@ -1,3 +1,5 @@
+import AddToday from "@/app/Components/ExDetails/AddToday";
+import SaveLater from "@/app/Components/ExDetails/SaveLater";
 import { Exercise } from "@/Types/excercise";
 import Image from "next/image";
 import React from "react";
@@ -201,7 +203,7 @@ const DetailsPage = async ({ params }: DetailsPageProps) => {
                 {exercise.instructions.map((instruction, index) => (
                   <li
                     key={index}
-                    className="flex gap-2 text-[9px] leading-relaxed text-gray-400 sm:text-[10px]"
+                    className="flex gap-2 text-[10px] leading-relaxed text-gray-400 sm:text-[10px]"
                   >
 
                     <span className="w-3 shrink-0 text-gray-500">
@@ -225,41 +227,9 @@ const DetailsPage = async ({ params }: DetailsPageProps) => {
             ========================== */}
             <div className="mt-5 flex flex-wrap gap-2 sm:gap-3">
 
-              <button
-                className="
-                  rounded-md
-                  bg-lime-400
-                  px-3
-                  py-2
-                  text-[9px]
-                  font-bold
-                  text-black
-                  transition
-                  hover:bg-lime-300
-                  sm:text-[10px]
-                "
-              >
-                Add to today&apos;s plan
-              </button>
-
-              <button
-                className="
-                  rounded-md
-                  border
-                  border-gray-700
-                  bg-[#151820]
-                  px-3
-                  py-2
-                  text-[9px]
-                  text-gray-300
-                  transition
-                  hover:border-gray-500
-                  hover:text-white
-                  sm:text-[10px]
-                "
-              >
-                Save for Later
-              </button>
+            <AddToday exercise={exercise} />
+            <SaveLater exercise={exercise} />
+        
 
             </div>
 
