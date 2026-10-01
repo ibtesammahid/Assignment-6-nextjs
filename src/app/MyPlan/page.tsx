@@ -1,22 +1,20 @@
 "use client";
 
 import React, { useContext, useMemo, useState } from "react";
-import type { Exercise } from "@/Types/excercise";
+// import type { Exercise } from "@/Types/excercise";
 import Link from "next/link";
 import { ExerciseContext } from "@/Context/ExerciseContext";
+import { FaFire, FaRegClock, FaRegStar } from "react-icons/fa";
+import Image from "next/image";
+import { CiCircleRemove } from "react-icons/ci";
 
 const MyPlanPage = () => {
   const [activeTab, setActiveTab] = useState<"today" | "saved">("today");
 
-  const { exerciseData, savedExercises = [] } = useContext(
+  const { exerciseData,setExerciseData, savedExercises, setSavedExercises } = useContext(
     ExerciseContext
-  ) as {
-    exerciseData?: Exercise[];
-    savedExercises?: Exercise[];
-  };
+  )
   console.log(exerciseData, "Exercise data paisi");
-
-  const [todayPlan, setTodayPlan] = useState<Exercise[]>([]);
 
 //   const [savedExercises] = useState<Exercise[]>([]);
 
@@ -25,24 +23,31 @@ const MyPlanPage = () => {
   /*
    * Calculate summary dynamically
    */
-  const totalExercises = todayPlan.length;
+const currentExercises =
+  activeTab === "today"
+    ? exerciseData
+    : savedExercises;
 
-  const totalMinutes = todayPlan.reduce(
-    (total, exercise) => total + exercise.duration,
-    0
-  );
+const totalExercises = currentExercises.length;
 
-  const totalCalories = todayPlan.reduce(
-    (total, exercise) => total + exercise.caloriesBurned,
-    0
-  );
+const totalMinutes = currentExercises.reduce(
+  (total, exercise) => total + exercise.duration,
+  0
+);
+
+const totalCalories = currentExercises.reduce(
+  (total, exercise) => total + exercise.caloriesBurned,
+  0
+);
 
   /*
    * Sort exercises dynamically
    */
   const displayedExercises = useMemo(() => {
-    const exercises =
-      activeTab === "today" ? todayPlan : savedExercises;
+   const exercises =
+  activeTab === "today"
+    ? exerciseData ?? []
+    : savedExercises ?? [];
 
     return [...exercises].sort((a, b) => {
       if (sortBy === "duration") {
@@ -59,7 +64,21 @@ const MyPlanPage = () => {
 
       return 0;
     });
-  }, [activeTab, todayPlan, savedExercises, sortBy]);
+  }, [activeTab, exerciseData, savedExercises, sortBy]);
+
+
+const handleRemove = (id: number) => {
+  if (activeTab === "today") {
+    setExerciseData((current) =>
+      current.filter((item) => item.id !== id)
+    );
+  } else {
+    setSavedExercises((current) =>
+      current.filter((item) => item.id !== id)
+    );
+  }
+};
+
 
   return (
     <main className="min-h-screen bg-[#0d0f13] px-4 py-8 text-white sm:px-6 lg:px-8">
@@ -198,7 +217,7 @@ const MyPlanPage = () => {
           {displayedExercises.length === 0 ? (
 
             /* Empty state */
-            <div className="flex min-h-[250px] flex-col items-center justify-center rounded-xl border border-dashed border-gray-800">
+            <div className="flex min-h-62.5 flex-col items-center justify-center rounded-xl border border-dashed border-gray-800">
 
               <h2 className="text-sm font-bold uppercase">
                 Nothing here yet
@@ -218,7 +237,7 @@ const MyPlanPage = () => {
           ) : (
 
             /* Exercise list */
-            <div className="space-y-3">
+            <div className="space-y-3 py-4">
 
               {displayedExercises.map((exercise) => (
 
@@ -227,31 +246,37 @@ const MyPlanPage = () => {
                   className="flex items-center justify-between rounded-xl border border-gray-800 bg-[#151820] p-4"
                 >
 
-                  <div>
-                    <h3 className="text-sm font-bold uppercase">
+
+                  <div className="flex items-center gap-4">
+                  <Image src={exercise.image} alt={exercise.name} width={60} height={60} className="w-16 h-16 object-cover rounded-md" />
+                    <div>
+                      <h3 className="text-sm font-bold uppercase">
                       {exercise.name}
                     </h3>
 
-                    <p className="mt-1 text-xs text-gray-500">
-                      {exercise.duration} min ·{" "}
-                      {exercise.caloriesBurned} kcal
+                    <p className="mt-1 text-xs text-gray-500 flex justify-between gap-1 items-center ">
+                      <span className="text-lime-400"><FaRegClock /></span>{exercise.duration} min
+                      <span className="text-lime-400"><FaFire /></span>{exercise.caloriesBurned} kcal
+                      <span className="text-lime-400"><FaRegStar /></span>{exercise.rating}
                     </p>
+                    </div>
                   </div>
 
+                  <div className="flex items-center gap-3">
+                    <Link href={`/workout/${exercise.id}`}>
+                    <button className="text-xs border border-gray-600 rounded-2xl p-2 hover:text-lime-300 hover:border-lime-300 transition-all">
+                      View Details
+                    </button>
+                  </Link>
 
-                  <button
-                    onClick={() => {
-                      setTodayPlan((current) =>
-                        current.filter(
-                          (item) => item.id !== exercise.id
-                        )
-                      );
-                    }}
-                    className="text-xs text-gray-500 hover:text-red-400"
-                  >
-                    Remove
-                  </button>
+                  <button className="text-black border-lime-400 bg-lime-400 hover:text-white transition-colors hover:bg-transparent hover:border-lime-300 rounded-2xl p-2 text-xs font-bold">Mark as done</button>
 
+
+<button
+  onClick={() => handleRemove(exercise.id)}
+  className="text-xl text-gray-500 hover:text-red-400"
+><CiCircleRemove /></button>
+                  </div>
                 </div>
 
               ))}

@@ -15,9 +15,20 @@ const AddToday = ({ exercise }: { exercise: Exercise }) => {
     console.log(exerciseData, "ExerciseData from AddToday component");
 
 const handleAddToToday = () => {
-  setExerciseData((prev) => [...prev, exercise]);
+  setExerciseData((prev) => {
+    const alreadyExists = prev.some(
+      (item) => item.id === exercise.id
+    );
 
-  toast.success(`${exercise.name} has been added to today's plan!`);
+    if (alreadyExists) {
+      toast.info(`${exercise.name} is already in today's plan!`);
+      return prev;
+    }
+
+    toast.success(`${exercise.name} has been added to today's plan!`);
+
+    return [...prev, exercise];
+  });
 };
     return (
         <div>
