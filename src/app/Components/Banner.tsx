@@ -1,6 +1,12 @@
 import Image from "next/image";
 import React from "react";
 import BannerImage from '@/assets/banner.png';
+import { Oswald } from "next/font/google";
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 const Banner = () => {
   return (
@@ -9,8 +15,8 @@ const Banner = () => {
 
       <div className="max-w-4xl m-6 py-10">
         <p className="text-[#C2F800] py-3" >WORKOUT LIBRARY</p>
-        <h2 className="font-bold text-6xl py-3" >TRAIN WITH INTENT. LOG EVERY SET.</h2>
-        <p className="text-[#9CA3AF] py-3 max-w-xl">
+        <h2 className={`font-bold text-6xl py-3 ${oswald.className}`} >TRAIN WITH INTENT. LOG<br></br> EVERY SET.</h2>
+      <p className={`text-[#9CA3AF] py-3 max-w-xl`}>
           FitLog is a dark, no-nonsense gym companion: pick a lift, lock it <br/>into
           today&apos;s plan, and watch the week&apos;s work add up.
         </p>

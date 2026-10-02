@@ -2,6 +2,7 @@
 import { ExerciseContext } from '@/Context/ExerciseContext';
 import { Exercise } from '@/Types/excercise';
 import React, { useContext } from 'react';
+import { MdOutlinePlaylistAdd } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
 const AddToday = ({ exercise }: { exercise: Exercise }) => {
@@ -39,9 +40,13 @@ const AddToday = ({ exercise }: { exercise: Exercise }) => {
                   transition
                   hover:bg-lime-300
                   sm:text-[10px]
+                  flex items-center gap-1
+                  cursor-pointer
                 "
                 onClick={() => handleAddToToday()}
               >
+                <MdOutlinePlaylistAdd className='text-xl' />
+
                 Add to today&apos;s plan
               </button>
 

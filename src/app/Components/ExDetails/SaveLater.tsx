@@ -3,6 +3,7 @@
 import { ExerciseContext } from "@/Context/ExerciseContext";
 import { Exercise } from "@/Types/excercise";
 import React, { useContext } from "react";
+import { CiBookmark } from "react-icons/ci";
 import { toast } from 'react-toastify';
 
 const SaveLater = ({ exercise }: { exercise: Exercise }) => {
@@ -39,9 +40,12 @@ const SaveLater = ({ exercise }: { exercise: Exercise }) => {
         hover:border-gray-500
         hover:text-white
         sm:text-[10px]
+        flex items-center gap-1
+        cursor-pointer
       "
        onClick={() => handleSaveForLater()}
       >
+        <CiBookmark className='text-xl' />
       Save for Later
     </button>
   );

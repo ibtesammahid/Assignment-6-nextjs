@@ -8,6 +8,13 @@ import { FaFire, FaRegClock, FaRegStar } from "react-icons/fa";
 import Image from "next/image";
 import { CiCircleRemove } from "react-icons/ci";
 import { toast } from "react-toastify";
+import { Oswald } from "next/font/google";
+
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 
 const MyPlanPage = () => {
@@ -103,6 +110,8 @@ const handleMarkAsDone = (id: number) => {
   toast.success(`${exercise.name} completed!`);
 };
 
+
+
   return (
     <main className="min-h-screen bg-[#0d0f13] px-4 py-8 text-white sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
@@ -111,7 +120,7 @@ const handleMarkAsDone = (id: number) => {
         ========================== */}
 
         <div>
-          <h1 className="text-2xl font-bold uppercase">My Plan</h1>
+          <h1 className={`text-2xl font-bold uppercase ${oswald.className}`}>My Plan</h1>
 
           <p className="mt-1 text-sm text-gray-500">
             Cap of five lifts for today. Finish them, then load more.
@@ -203,7 +212,7 @@ const handleMarkAsDone = (id: number) => {
           {displayedExercises.length === 0 ? (
             /* Empty state */
             <div className="flex min-h-62.5 flex-col items-center justify-center rounded-xl border border-dashed border-gray-800">
-              <h2 className="text-sm font-bold uppercase">Nothing here yet</h2>
+              <h2 className={`text-sm font-bold uppercase ${oswald.className}`}>Nothing here yet</h2>
 
               <p className="mt-2 text-xs text-gray-500">
                 Browse the library and add a lift to get moving.

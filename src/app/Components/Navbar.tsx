@@ -1,13 +1,23 @@
 "use client";
 import Image from 'next/image';
-import React from 'react';
+import React, { useContext } from 'react';
 import Logo from '@/assets/logo.png';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { ExerciseContext } from '@/Context/ExerciseContext';
+import { Oswald } from 'next/font/google';
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 
 const Navbar = () => {
-
   const pathname = usePathname();
+  const {exerciseData, savedExercises} = useContext(ExerciseContext);
+
+
     return (
    <div className="navbar bg-black shadow-sm  ">
   <div className="navbar-start">
@@ -26,7 +36,7 @@ const Navbar = () => {
     <div className="flex items-center gap-1">
 
       <Link href="/"><Image src={Logo} alt="Logo"  /></Link>
-    <Link href="/" className="text-xl font-bold">FITLOG</Link>
+    <Link href="/" className={`${oswald.className} text-xl font-bold`}>FITLOG</Link>
     </div>
 
   </div>
@@ -37,9 +47,9 @@ const Navbar = () => {
       
     </ul>
   </div>
-  <div className="navbar-end flex gap-2">
-    <Link href="/MyPlan"><button className="btn">Plan</button></Link>
-    <Link href="/MyPlan"><button className="btn">Saved</button></Link>
+  <div className="navbar-end flex gap-4">
+    <Link href="/MyPlan"><button className='text-[#D1D5DB] text-xs'>Plan <span className='bg-lime-400 rounded-full text-black px-2 py-1'>{exerciseData.length}</span></button></Link>
+    <Link href="/MyPlan"><button className='text-[#D1D5DB] text-xs'>Saved <span className='border border-gray-600 rounded-full px-2 py-1'>{savedExercises.length}</span></button></Link>
     
   </div>
 </div>

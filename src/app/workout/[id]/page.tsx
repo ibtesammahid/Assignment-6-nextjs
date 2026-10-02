@@ -1,8 +1,14 @@
 import AddToday from "@/app/Components/ExDetails/AddToday";
 import SaveLater from "@/app/Components/ExDetails/SaveLater";
 import { Exercise } from "@/Types/excercise";
+import { Oswald } from "next/font/google";
 import Image from "next/image";
-import React from "react";
+
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 interface DetailsPageProps {
   params: Promise<{
@@ -65,7 +71,7 @@ const DetailsPage = async ({ params }: DetailsPageProps) => {
           <div className="flex min-w-0 flex-col">
 
             {/* Exercise Name */}
-            <h1 className="text-xl font-bold uppercase leading-tight sm:text-2xl lg:text-3xl">
+            <h1 className={`text-xl font-bold uppercase leading-tight sm:text-2xl lg:text-3xl ${oswald.className}`}>
               {exercise.name}
             </h1>
 

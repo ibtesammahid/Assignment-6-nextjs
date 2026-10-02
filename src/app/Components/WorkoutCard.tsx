@@ -1,4 +1,5 @@
 import { Exercise } from '@/Types/excercise';
+import { Oswald } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -9,6 +10,11 @@ import { IoFlame } from 'react-icons/io5';
 interface WorkoutCardProps {
   exercise: Exercise;
 }
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 const WorkoutCard = ({exercise } : WorkoutCardProps) => {
     return (
@@ -45,7 +51,7 @@ const WorkoutCard = ({exercise } : WorkoutCardProps) => {
         </div>
 
         {/* Exercise Name */}
-        <h2 className="text-xl font-bold uppercase tracking-wide">
+        <h2 className={`text-xl font-bold uppercase tracking-wide ${oswald.className}`}>
           {exercise.name}
         </h2>
 
@@ -62,19 +68,19 @@ const WorkoutCard = ({exercise } : WorkoutCardProps) => {
 
           {/* Duration */}
           <div className="flex items-center gap-1.5">
-            <FaRegClock size={16} />
+            <FaRegClock size={16} className='text-lime-400' />
             <span>{exercise.duration} min</span>
           </div>
 
           {/* Calories */}
           <div className="flex items-center gap-1.5">
-            <IoFlame size={16} />
+            <IoFlame size={16} className='text-lime-400' />
             <span>{exercise.caloriesBurned} kcal</span>
           </div>
 
           {/* Rating */}
           <div className="flex items-center gap-1.5">
-            <CiStar size={16} />
+            <CiStar size={16} className='text-lime-400' />
             <span>{exercise.rating}</span>
           </div>
 
