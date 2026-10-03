@@ -2,7 +2,6 @@ import { Exercise } from "@/Types/excercise";
 import { Oswald } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { CiStar } from "react-icons/ci";
 import { FaRegClock } from "react-icons/fa";
 import { IoFlame } from "react-icons/io5";
@@ -24,7 +23,7 @@ const WorkoutCard = ({ exercise }: WorkoutCardProps) => {
     >
       <div className="w-full   overflow-hidden rounded-2xl border border-gray-800 bg-[#15161b] text-white shadow-lg">
         {/* Image */}
-        <div className="relative h-[180px] w-full">
+        <div className="relative h-45 w-full">
           <Image
             src={exercise.image}
             alt={exercise.name}

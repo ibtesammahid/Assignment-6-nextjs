@@ -47,13 +47,13 @@ const DetailsPage = async ({ params }: DetailsPageProps) => {
               height={700}
               priority
               className="
-                h-[300px]
+                h-75
                 w-full
                 object-cover
-                sm:h-[400px]
+                sm:h-100
                 md:h-full
-                md:min-h-[500px]
-                lg:min-h-[560px]
+                md:min-h-125
+                lg:min-h-140
               "
             />
           </div>

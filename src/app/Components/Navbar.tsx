@@ -90,7 +90,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end flex gap-4">
         <Link href="/MyPlan">
-          <button className="text-[#D1D5DB] text-xs">
+          <button className="text-[#D1D5DB] text-xs cursor-pointer">
             Plan{" "}
             <span className="bg-[#C2F800] rounded-full text-black px-2 py-1">
               {exerciseData.length}
@@ -98,7 +98,7 @@ const Navbar = () => {
           </button>
         </Link>
         <Link href="/MyPlan">
-          <button className="text-[#D1D5DB] text-xs">
+          <button className="text-[#D1D5DB] text-xs cursor-pointer">
             Saved{" "}
             <span className="border border-gray-600 rounded-full px-2 py-1">
               {savedExercises.length}
