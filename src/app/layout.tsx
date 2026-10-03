@@ -34,7 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-theme="dark"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className={`min-h-full flex flex-col container mx-auto ${inter.className}`}>
+      <body className={`min-h-full flex flex-col container mx-auto px-4 sm:px-6 lg:px-8 ${inter.className}`}>
         <ExerciseContextProvider>
           <Navbar />
           <main>{children}</main>

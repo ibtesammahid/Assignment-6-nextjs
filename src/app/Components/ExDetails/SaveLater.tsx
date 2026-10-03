@@ -4,16 +4,13 @@ import { ExerciseContext } from "@/Context/ExerciseContext";
 import { Exercise } from "@/Types/excercise";
 import React, { useContext } from "react";
 import { CiBookmark } from "react-icons/ci";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const SaveLater = ({ exercise }: { exercise: Exercise }) => {
-  const { savedExercises, setSavedExercises } =
-    useContext(ExerciseContext);
+  const { savedExercises, setSavedExercises } = useContext(ExerciseContext);
 
   const handleSaveForLater = () => {
-    const alreadySaved = savedExercises.some(
-      (item) => item.id === exercise.id
-    );
+    const alreadySaved = savedExercises.some((item) => item.id === exercise.id);
 
     if (alreadySaved) {
       toast.error(`${exercise.name} is already saved!`);
@@ -43,9 +40,9 @@ const SaveLater = ({ exercise }: { exercise: Exercise }) => {
         flex items-center gap-1
         cursor-pointer
       "
-       onClick={() => handleSaveForLater()}
-      >
-        <CiBookmark className='text-xl' />
+      onClick={() => handleSaveForLater()}
+    >
+      <CiBookmark className="text-xl" />
       Save for Later
     </button>
   );

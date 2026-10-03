@@ -24,11 +24,7 @@ export const ExerciseContext = createContext<ExerciseContextType>({
   setSavedExercises: () => {},
 });
 
-const ExerciseContextProvider = ({
-  children,
-}: {
-  children: ReactNode;
-}) => {
+const ExerciseContextProvider = ({ children }: { children: ReactNode }) => {
   const [exerciseData, setExerciseData] = useState<Exercise[]>([]);
   const [savedExercises, setSavedExercises] = useState<Exercise[]>([]);
 

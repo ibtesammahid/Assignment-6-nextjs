@@ -4,7 +4,6 @@ import { Exercise } from "@/Types/excercise";
 import { Oswald } from "next/font/google";
 import Image from "next/image";
 
-
 const oswald = Oswald({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -28,23 +27,19 @@ const DetailsPage = async ({ params }: DetailsPageProps) => {
   const exerciseDetails = await getCards();
 
   const exercise = exerciseDetails.find(
-    (exercise: Exercise) => String(exercise.id) === String(id)
+    (exercise: Exercise) => String(exercise.id) === String(id),
   ) as Exercise;
 
   return (
     <main className="min-h-screen bg-[#0d0f13] px-4 py-6 text-white sm:px-6 sm:py-8 lg:px-8 lg:py-10">
-
       {/* Main Container */}
       <div className="mx-auto max-w-6xl">
-
         {/* Main Layout */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
-
           {/* =========================
               LEFT - IMAGE
           ========================== */}
           <div className="w-full overflow-hidden rounded-xl">
-
             <Image
               src={exercise.image}
               alt={exercise.name}
@@ -61,38 +56,34 @@ const DetailsPage = async ({ params }: DetailsPageProps) => {
                 lg:min-h-[560px]
               "
             />
-
           </div>
-
 
           {/* =========================
               RIGHT - CONTENT
           ========================== */}
           <div className="flex min-w-0 flex-col">
-
             {/* Exercise Name */}
-            <h1 className={`text-xl font-bold uppercase leading-tight sm:text-2xl lg:text-3xl ${oswald.className}`}>
+            <h1
+              className={`text-xl font-bold uppercase leading-tight sm:text-2xl lg:text-3xl ${oswald.className}`}
+            >
               {exercise.name}
             </h1>
-
 
             {/* Description */}
             <p className="mt-2 text-xs leading-relaxed text-gray-400 sm:text-sm">
               {exercise.description}
             </p>
 
-
             {/* =========================
                 BADGES
             ========================== */}
             <div className="mt-3 flex flex-wrap gap-2">
-
               {exercise.muscleGroups.map((muscle) => (
                 <span
                   key={muscle}
                   className="
                     rounded-md
-                    bg-lime-400
+                    bg-[#C2F800]
                     px-2.5
                     py-1
                     text-[9px]
@@ -109,7 +100,7 @@ const DetailsPage = async ({ params }: DetailsPageProps) => {
               <span
                 className="
                   rounded-md
-                  bg-lime-400
+                  bg-[#C2F800]
                   px-2.5
                   py-1
                   text-[9px]
@@ -121,15 +112,12 @@ const DetailsPage = async ({ params }: DetailsPageProps) => {
               >
                 {exercise.difficulty}
               </span>
-
             </div>
-
 
             {/* =========================
                 DETAILS TABLE
             ========================== */}
             <div className="mt-4 w-full overflow-hidden rounded-lg border border-gray-800 bg-[#151820]">
-
               {[
                 {
                   label: "Equipment",
@@ -178,7 +166,6 @@ const DetailsPage = async ({ params }: DetailsPageProps) => {
                     }
                   `}
                 >
-
                   {/* Label */}
                   <span className="shrink-0 text-[9px] font-bold uppercase tracking-wide text-gray-500 sm:text-[10px]">
                     {item.label}
@@ -188,60 +175,43 @@ const DetailsPage = async ({ params }: DetailsPageProps) => {
                   <span className="min-w-0 wrap-break-word text-right text-[9px] text-gray-200 sm:text-[10px]">
                     {item.value}
                   </span>
-
                 </div>
               ))}
-
             </div>
-
 
             {/* =========================
                 INSTRUCTIONS
             ========================== */}
             <div className="mt-5">
-
               <h2 className="text-xs font-bold uppercase tracking-wide">
                 Instructions
               </h2>
 
               <ol className="mt-2 space-y-1.5">
-
                 {exercise.instructions.map((instruction, index) => (
                   <li
                     key={index}
                     className="flex gap-2 text-[10px] leading-relaxed text-gray-400 sm:text-[10px]"
                   >
-
                     <span className="w-3 shrink-0 text-gray-500">
                       {index + 1}.
                     </span>
 
-                    <span>
-                      {instruction}
-                    </span>
-
+                    <span>{instruction}</span>
                   </li>
                 ))}
-
               </ol>
-
             </div>
-
 
             {/* =========================
                 BUTTONS
             ========================== */}
             <div className="mt-5 flex flex-wrap gap-2 sm:gap-3">
-
-            <AddToday exercise={exercise} />
-            <SaveLater exercise={exercise} />
-        
-
+              <AddToday exercise={exercise} />
+              <SaveLater exercise={exercise} />
             </div>
-
           </div>
         </div>
-
       </div>
     </main>
   );
